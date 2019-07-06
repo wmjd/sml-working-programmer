@@ -23,4 +23,5 @@ fun isDate(d : int, m : string) =
 		else
 			if m = "February" andalso (d >= 0 andalso d <= 28) then true else false ;
 	 
-
+fun vecAdd((x1, x2),(y1,y2)) = (x1+y1,x2+y2); 
+fun fact n = if n = 0 then 1 else n*fact(n-1);
