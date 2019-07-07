@@ -25,3 +25,19 @@ fun isDate(d : int, m : string) =
 	 
 fun vecAdd((x1, x2),(y1,y2)) = (x1+y1,x2+y2); 
 fun fact n = if n = 0 then 1 else n*fact(n-1);
+fun facti(n,i) = if n = 0 then i else facti(n-1, n*i);
+
+(*	these are not functions. call-by-value would then evaluate both expressions which is not desirable for conds. 
+	E1 andalso E2; <=> if E1 then E2 else false;
+	E1 orelse E2; <=> if E1 then true else E2;
+*)
+
+fun even n = n mod 2 = 0;
+fun isPowerOf2 n = 
+	if n = 1 then true (* remember, could replace the if-then-else with an orelse between juxtaposed the expressions *)
+	else even n andalso isPowerOf2 (n div 2);
+
+fun isPowerOf(p, n) = 
+	(n = 1) orelse ((n mod p = 0) andalso isPowerOf(p, n div p));
+
+
