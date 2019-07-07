@@ -17,3 +17,29 @@ fun fib n = if (n=2) then 2 else
 			if (n=1) then 1 else
 			if (n=0) then 0 else 
 			fib(n-1) + fib(n-2);
+
+(* square root procedures *)
+(* make a guess and average it with x/guess *)
+fun sqrt(x : real, guess : real) = 
+	if (abs(guess*guess-x) <= 0.0001) then guess 
+	else sqrt(x, (guess+(x/guess))/2.0);	
+
+(* code goes here for introot  *)
+
+(*computes gcd twice*)
+fun fract(n,d) = (n div gcd(n,d), d div gcd(n,d)); 
+(* local declarations *)
+fun fraction(n,d) =
+	let val com = gcd(n,d)
+	in (n div com, d div com) end;
+(* form of let expression,
+	let D in E end 
+	where D is decl'r'n eval'd first
+	where E *)
+
+
+
+
+
+
+
