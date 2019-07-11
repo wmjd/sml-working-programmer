@@ -8,4 +8,4 @@ type vec = real * real;
 
 fun vadd((x1,y1), (x2,y2)) : vec = (x1+x2,y1+y2);
 fun vneg(x,y) : vec = (~x, ~y);
-fun vsub(a,b) : vec = vadd(vneg a, b);
+fun vsub(a,b) : vec = vadd(a, vneg b);
