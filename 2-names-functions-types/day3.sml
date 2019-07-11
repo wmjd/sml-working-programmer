@@ -41,5 +41,21 @@ fun fraction(n,d) =
 
 
 
-
+(* just declaring some vals *)
+val one = "whatever";
+val two = "blah blah";
+val thr = "asdasd";
+(* transforms to simultaneous declr'n *)
+val one = "whatever"
+and two = "blah blah"
+and thr = "asdasd";
+(* can also do strange things like this interactive session shows:
+- val one = 1;
+val one = 1 : int
+- val two = 2;
+val two = 2 : int
+- val one = two and two = one;
+val one = 2 : int
+val two = 1 : int
+*)
 
