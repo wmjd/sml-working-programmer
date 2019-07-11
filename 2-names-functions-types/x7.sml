@@ -3,7 +3,8 @@ a pound. Write functions to add and subtract two amounts, working with triples
 (pounds, shillings, pence). *)
 
 type $ = int*int*int;
-fun change(a : $, b : $) : $ = 
+
+fun add(a : $, b : $) : $ = 
 	let
 		val rough = (#1a + #1b, #2a + #2b, #3a + #3b)
 		fun smooth(m : $) : $ = 
@@ -15,3 +16,6 @@ fun change(a : $, b : $) : $ =
 	in
 		smooth(rough)	
 	end ;
+
+fun sub(a : $, b : $) : $ = add(a, (~ (#1b:int), ~ (#2b:int), ~ (#3b:int)));
+
