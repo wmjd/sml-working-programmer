@@ -20,3 +20,4 @@ fun null nil = true
 (* null is polymorphic it works on lists of any type of elements! *)
 
 
+fun prod' ls = if null ls then 1 else hd(ls) * prod'(tl(ls));
