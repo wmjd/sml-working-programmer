@@ -21,3 +21,13 @@ fun null nil = true
 
 
 fun prod' ls = if null ls then 1 else hd(ls) * prod'(tl(ls));
+(* If you prefer this version of prod, you might as well give up ML for Lisp. For
+added clarity, Lisp primitives have names like CAR and CDR. Normal people find
+pattern-matching more readable than hd and tl. A good ML compiler analyses
+the set of patterns to generate the best code for the function. More importantly,
+the compiler prints a warning if the patterns do not cover all possible arguments
+of the function. *)
+
+
+
+
