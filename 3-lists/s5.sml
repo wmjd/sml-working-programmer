@@ -6,5 +6,7 @@ infixr 5 @;
 fun ([] @ ys) = ys
 	| ((x::xs) @ ys) = x::(xs @ ys);
 
+
+(* write rev with append *)
 fun rev nil = nil
-	| rev ls = (rev (tl ls))::(hd ls); 
+	| rev (x::xs)  = rev(xs) @ [x];
