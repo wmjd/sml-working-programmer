@@ -24,3 +24,13 @@ fun rv ls =
 	in
 		r(ls, nil)
 	end
+
+(* can't write reverse like this lisp program,
+(define (rev ls)
+	(define (loop ls)
+		(if (null? (cdr ls)) (car ls))
+			(cons (loop (cdr ls)) (car ls))))
+	(if (null? ls) '()
+		(cons (loop ls) '())))
+
+*)
