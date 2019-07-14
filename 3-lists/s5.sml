@@ -23,5 +23,7 @@ fun rv ls =
 	end ;
 *)
 
+(* reverse append takes the head of a list and cons's it to the second list
+this is useful for reversing a list as you can pass nil as second list so the function essentially builds the list in that second arg, startign with the original arg, nil, and consing the head of the first list to this 2nd arg on the recursive call *)
 fun reverseAppend (nil, l2) = l2
 	| reverseAppend (x::xs, l2) = reverseAppend(xs, x::l2);  
