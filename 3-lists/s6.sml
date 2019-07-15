@@ -16,4 +16,10 @@ fun kat nil = nil
 fun zip(nil,_) = nil
 	| zip(_,nil) = nil
 	| zip(x::xs, y::ys) = (x,y)::zip(xs,ys);
-(* this *)
+(* this one from the book, *)
+fun zipp(x::xs, y::ys) = (x,y)::zipp(xs,ys) (* switch the recursive case to the first line to catch this pattern *)
+	| zipp _ = nil;
+
+fun zip(x::xs,y::ys) = (x,y) :: zip(xs,ys)
+	| zip _ = [];
+
