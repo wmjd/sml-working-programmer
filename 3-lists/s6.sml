@@ -26,3 +26,17 @@ zip takes a pair of lists and gives a list of pairs
 unzip takes a list of pairs and gives a pair of lists *)
 fun unzip[(a,b)] = ([a],[b]) 
 	| unzip((a,b)::pairs) = ((a::(#1 (unzip pairs))),(b::(#2 (unzip pairs)))); 
+
+(* they were smarter, *)
+fun conspair ((x,y), (xs, ys)) = (x::xs, y::ys);
+fun unzip[] = ([],[])
+	| unzip (pair::pairs) = conspair(pair, unzip pairs);
+(* *)
+fun unzip [] = ([],[])
+	| unzip ((x,y)::pairs) =
+		let val (xs, ys) = unzip pairs
+		in (x::xs, y::ys) end;
+(* call with the list of pairs and nil, nil *)
+fun revunzip([], xs, ys) = (xs, ys)
+	| revunzip((x,y)::pairs, xs, ys) = 
+		revunzip(pairs, x::xs, y::ys); 
