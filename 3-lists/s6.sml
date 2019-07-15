@@ -16,10 +16,13 @@ fun kat nil = nil
 fun zip(nil,_) = nil
 	| zip(_,nil) = nil
 	| zip(x::xs, y::ys) = (x,y)::zip(xs,ys);
-(* this one from the book, *)
 fun zipp(x::xs, y::ys) = (x,y)::zipp(xs,ys) (* switch the recursive case to the first line to catch this pattern *)
 	| zipp _ = nil;
-
 fun zip(x::xs,y::ys) = (x,y) :: zip(xs,ys)
 	| zip _ = [];
 
+(* unzip a zip to get back the two lists 
+zip takes a pair of lists and gives a list of pairs
+unzip takes a list of pairs and gives a pair of lists *)
+fun unzip[(a,b)] = ([a],[b]) 
+	| unzip((a,b)::pairs) = ((a::(#1 (unzip pairs))),(b::(#2 (unzip pairs)))); 
