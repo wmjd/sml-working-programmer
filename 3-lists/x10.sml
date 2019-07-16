@@ -2,9 +2,7 @@
 
 (*takes the first i elts from list*)
 fun take ([], i) = []
-|	take (x::xs, i) = if i>0 
-						then x::take(xs, i-1) 
-						else [];
+|	take (x::xs, i) = if i>0 then x::take(xs, i-1) else [];
 
 fun rtake ([], i, acc) = []
 |	rtake (x::xs, 0, acc) = acc
@@ -19,4 +17,4 @@ fun rev ls =
 	end ;
 
 
-
+(* rev of rtaken is more compact but longer to run because you have to reverse the list *)
