@@ -1,3 +1,5 @@
+(* nothing much came of this, just practice *)
+
 (* binary arith *)
 
 fun bincarry (0, ps) = ps
