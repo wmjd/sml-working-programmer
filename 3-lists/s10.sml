@@ -28,7 +28,13 @@ val foo = [[2,0],
 val bar = [[1,0,2],
            [4,~1,0]];
 	
-
-
+(* they did it this way instead: *)
+fun rowprod(row,[]) = []
+|	rowprod(row, col::cols) = 
+		dotprod(row,col) :: rowprod(row,cols);
+fun rowlistprod([], cols) = []
+|	rowlistprod(row::rows, cols) = 
+		rowprod(row,cols) :: rowlistprod(rows,cols);
+fun mp(rowsA, rowsB) = rowlistprod(rowsA, transp rowsB); 
 
 
