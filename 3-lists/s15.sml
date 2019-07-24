@@ -40,7 +40,12 @@ fun cartp(A,B)=
 		outer(A)
 	end;
 (* that was my implementation. this was theirs: *)
-
+fun cp([], ys) = []
+|	cp(x::xs, ys) = 
+	let val xsprod = cp(xs,ys)
+		fun pairx [] = xsprod
+		|	pairx(y::ys) = (x,y) :: (pairx ys)
+	in pairx ys end;
 
 
 
