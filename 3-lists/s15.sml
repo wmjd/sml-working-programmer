@@ -28,3 +28,19 @@ val s = [1,2,3,4,5];
 (* was not sure why I needed to make a list of the base instead of just returning the base in the base case (unfortunate pun...)
 remember, the inductive step APPENDS the vals of the recursive calls
 this means their members will share the same shallow list. instead, perserve the structure of the lists by making the [base] be a list consed onto an empty list. APPENDING these things will give a list of the lists which represent subsets *)
+
+(* cart product of A, B = set of all pairs whose elts are drawn from A, B*)
+fun cartp(A,B)=
+	let
+		fun inner(a, []) = []
+		|	inner(a, b::bz) =  (a,b)::inner(a,bz)
+		fun outer([]) = [] 
+		|	outer(a::az) = inner(a, B) @ outer(az)  
+	in
+		outer(A)
+	end;
+(* that was my implementation. this was theirs: *)
+
+
+
+
