@@ -14,9 +14,7 @@ fun p(n, nil) = nil
 
 fun allpaths(n, graph) = 
 	let fun loop nil = nil
-		|	loop (nxt::nxts) = (nxt::loop(next(nxt,graph)))::loop(nxts);
+		|	loop (nxt::nxts) = (nxt::loop(next(nxt,graph))) @ loop(nxts);
 	in loop(next(n, graph))
 	end;
-(* start with a node you want to find all the paths from. 
-get the list of all nexts of a
-call next of each of these elts *)
+
