@@ -6,23 +6,17 @@ fun next(_,nil) = nil
 		if n=src then dst::next(n,paths)
 		else next(n,paths);
 
+(* finds the first full path to its' end*)
+fun p(n, nil) = nil
+|	p(n, (path as (src,dst)) :: paths) = 
+		if n = src then (dst :: p(dst, paths)) (*:: p(node, path::paths)*)
+		else p(n,paths);
 
-
-
-
-
-
-
-
-
-
-(* finds all paths path from a node.*)
-fun p(node, nil) = nil
-|	p(node, (path as (from, to)) :: paths) = 
-		if node = from then (to :: p(to, paths)) (*:: p(node, path::paths)*)
-		else p(node,paths);
-
-(* trace out the evaluation... 
-smaller graph := [("a","b"),("b","c")]
-p("a", graph)
-*)
+fun allpaths(n, graph) = 
+	let fun loop nil = nil
+		|	loop (nxt::nxts) = (nxt::loop(next(nxt,graph)))::loop(nxts);
+	in loop(next(n, graph))
+	end;
+(* start with a node you want to find all the paths from. 
+get the list of all nexts of a
+call next of each of these elts *)
