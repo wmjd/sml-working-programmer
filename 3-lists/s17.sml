@@ -48,8 +48,12 @@ use "include.sml"; (* i need the infix mem function from here *)
 fun depthf([], graph, visited) = rev visited
 |	depthf(x::xs, graph, visited) =
 		if x mem visited then depthf (xs, graph, visited)
-		else depthf (next(x,graph) @ xs, graph, visited);
-(* this function is returning [] with appropriate args. will fix later *)
+		else depthf (next(x,graph) @ xs, graph, x::visited);
 
+fun depth([],graph,visited) = rev visited
+|	depth(x::xs,graph,visited) =
+		depth(xs,graph,
+			if x mem visited then visited
+			else depth (next(x,graph),graph,x::visited));
 
 	
