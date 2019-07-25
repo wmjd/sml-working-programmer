@@ -25,7 +25,8 @@ fun seq(A,B) = subs(A,B) andalso subs(B,A);
 fun powset( [], base ) = [base]
 |	powset( x::xs, base) = powset(xs, base) @ powset(xs, x::base);
 val s = [1,2,3,4,5];
-(* was not sure why I needed to make a list of the base instead of just returning the base in the base case (unfortunate pun...)
+(* was not sure why I needed to make a list of the base instead of just returning the base in the base case 
+
 remember, the inductive step APPENDS the vals of the recursive calls
 this means their members will share the same shallow list. instead, perserve the structure of the lists by making the [base] be a list consed onto an empty list. APPENDING these things will give a list of the lists which represent subsets *)
 

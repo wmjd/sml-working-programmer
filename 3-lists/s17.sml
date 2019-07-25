@@ -1,4 +1,5 @@
 val graph = [("a","b"),("a","c"),("a","d"),("b","e"),("c","f"),("d","e"),("e","f"),("e","g")];
+val g = [(1,2),(1,3),(2,4),(2,5),(3,6),(3,7)];
 
 (* find all of the nodes reachable from the first arg *)
 fun next(_,nil) = nil
@@ -27,9 +28,17 @@ fun dep(n, graph) =
 (* notes: the inductive step conses the first of the next nodes to a loop that finds the next of that (this is the way the structure is depth first, keep finding next of the first next)
 that whole expr is appended onto looping on the other nexts at that breadth. these steps constitute one call to loop. *)
 
-(* breadth first search of all paths reachable from n *)
+(* breadth first search of all paths reachable from x *)
 fun bread(x,g) =
-	let fun loop nil = nil
+	let fun innerloop nil = outerloop
+		|	innerloop (nxt::nxts) = next(nxt)::innerloop(nxts)
+		fun outerloop nil = nil
+		| 	outerloop(N) = N @ innerloop(N) 
+	in loop [x]
+	end;
+
+
+	(*let fun loop nil = nil
 		|	loop(N as (n::ns)) = N @ loop(next(n,g)) @ loop(ns) 
 	in loop [x] end;
-
+	*)
