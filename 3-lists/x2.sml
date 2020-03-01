@@ -3,3 +3,8 @@
 fun last(ls) = 
 	if (tl ls) = nil then (hd ls) (* warning polyEqual *)
 	else last(tl ls);
+
+(*use patterns this time...*)
+
+fun l [x] = x 
+|	l (x::y) = l y; 
