@@ -22,5 +22,5 @@ fun allChange (cs, cv, 0) = [cs]
 
 fun decToRoman n = converts(allChange([], roman, n));
 
-(*write this again without reusing allChange plainly and converting after*)
+
 
