@@ -21,3 +21,6 @@ fun allChange (cs, cv, 0) = [cs]
 		@ allChange(cs, cv, amt) ;      (* all the ways to change*)
 
 fun decToRoman n = converts(allChange([], roman, n));
+
+(*write this again without reusing allChange plainly and converting after*)
+
