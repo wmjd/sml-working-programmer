@@ -21,3 +21,31 @@ fun boolToBin nil = nil
 fun binToBool nil = nil
 |	binToBool (1::bs) = true::binToBool(bs)
 |	binToBool (0::bs) = false::binToBool(bs);
+
+(* i'm not supposed to just transform the values
+ * and i'm not sure why u started to do that
+ * rewrite underlying functions *)
+
+infix xor;
+fun p xor q = (p orelse q) andalso not(p andalso q); 
+
+fun boolcarry (false, ps) = ps
+|	boolcarry (true, []) = [true]
+|	boolcarry (true, p::ps) = (not p)::boolcarry(p,ps);
+
+fun boolsum (c, [], qs) = boolcarry (c,qs)
+|	boolsum (c, ps, []) = boolcarry (c,ps)
+|	boolsum (c, p::ps, q::qs) = 
+		(((not q) andalso (not p) andalso (not c)) orelse
+		((not q) andalso p andalso c) orelse
+		(q andalso (not p) andalso c) orelse
+		(q andalso p andalso (not c)))
+		::boolsum((c andalso p)
+			orelse (p andalso (not q))
+			orelse (c andalso (not q)), ps, qs);
+
+fun boolpod ([], _) = []
+|	boolpod (false::ps, qs) = false::boolpod(ps,qs)
+|	boolpod (true::ps, qs) = boolsum(false, qs, false::boolpod(ps,qs));
+
+
