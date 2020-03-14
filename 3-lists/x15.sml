@@ -30,10 +30,10 @@ infix xor;
 fun p xor q = (p orelse q) andalso not(p andalso q); 
 
 fun mod2(q,p,c) =
-	(((not q) andalso (not p) andalso (not c)) orelse
-	((not q) andalso p andalso c) orelse
-	(q andalso (not p) andalso c) orelse
-	(q andalso p andalso (not c)));
+	(q andalso p andalso c) orelse
+	(q andalso (not p) andalso (not c)) orelse
+	((not q) andalso (not p) andalso c) orelse
+	((not q) andalso p andalso (not c));
 
 fun div2(q,p,c) = 
 	(c andalso p) orelse
