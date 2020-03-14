@@ -1,48 +1,30 @@
-(* nothing much came of this, just practice *)
-
-(* binary arith *)
+(* the head of the list is the least significant bit
+ * essentially, the number is stored in reverse in list*)
 
 fun bincarry (0, ps) = ps
-|	bincarry (1, []) = [1]
-|	bincarry (1, p::ps) = (1-p)::bincarry(p,ps);
+|   bincarry (1, []) = [1]
+|   bincarry (1, p::ps) = (1-p)::bincarry(p, ps);
 
-fun binsum (c, [], qs) = bincarry (c,qs)
-|	binsum (c, ps, []) = bincarry (c,ps)
-|	binsum (c, p::ps, q::qs) = 
-		((c+p+q) mod 2) :: binsum((c+p+q) div 2, ps, qs);
+
+fun binsum (c, [], l) = bincarry(c, l)
+|   binsum (c, l, []) = bincarry(c, l)
+|   binsum (c, a::az, b::bz) = 
+	((a+b+c) mod 2)::binsum((a+b+c) div 2, az, bz);	
 
 fun binprod ([], _) = []
-|	binprod (0::ps, qs) = 0::binprod(ps,qs)
-|	binprod (1::ps, qs) = binsum(0, qs, 0::binprod(ps,qs));
-
-(* division is repeated subtr ignore remainder*)
-fun d(a,b) = (* this is just int divisioni, convert for this form after *)
-	if a<b then 0
-	else 1+d(a-b,b);  
-(* write special comparison and subtraction operators for this bin formay. already have addition *)
-fun lessthan (a,b) = toDec(a) < toDec(b);
-(* if you just convert everything, you don't need special arith operators like binsum..... 
-   instead, just convert, add/sub/mul/div, convert back
-*)
-fun toDec [] = 0
-(*|	toDec (1::ns) = 1+2*toDec(ns)
-|	toDec (0::ns) = 2*toDec(ns);*)
-|	toDec (n::ns) = (n mod 2) + 2*toDec(ns);
-fun toBin 0 = []
-(*|	toBin n = if ((n mod 2) = 0) then (0::toBin(n div 2)) else (1::toBin((n-1) div 2));*)
-|	toBin n = (n mod 2)::toBin(n div 2);
+|   binprod (0::ns, ms) = 0::binprod(ns, ms) 
+|   binprod (1::ns, ms) = binsum(0, ms, 0::binprod(ns, ms))
 
 
+(*3.16 Write function to divide one bin numeral by another*)
 
-(* can't really do signed numbers because the binary representation is of arbitrary length; wouldn't have a good way of marking negs? *)
+(* don't borrow from non-positive *)
+fun borrow (0, bin) = bin
+|   borrow (1, 1::bin) = 0::bin
+|   borrow (1, 0::bin) = 1::borrow(1, bin);
 
-(*
-fun binsub (xs, ys) = 
-	let fun neg [] = []
-		|	neg (x::xs) = ~x::neg(xs)
-	in binsum(0, xs, neg ys) end;
+(* don't sub greater from lesser *)
+fun binsub (b, l, _) = l
+|   binsub (b, x::xs, y::ys) = binsub
 
-fun bindiv ([], _) = []
-|	bindiv (0::ps, qs) = 0::binprod(ps,qs)
-|	bindiv (1::ps, qs) = binsub(qs, 0::binprod(ps,qs));
-*)
+

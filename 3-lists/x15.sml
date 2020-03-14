@@ -22,13 +22,15 @@ fun binToBool nil = nil
 |	binToBool (1::bs) = true::binToBool(bs)
 |	binToBool (0::bs) = false::binToBool(bs);
 
-(* i'm not supposed to just transform the values
- * and i'm not sure why u started to do that
+(* i'm not supposed to just transform the values by converting result
+ * and i'm not sure why i started to do that
  * rewrite underlying functions *)
 
+(* this wasn't useful for exercise*)
 infix xor;
 fun p xor q = (p orelse q) andalso not(p andalso q); 
 
+(* used Kmaps for mod2 and div2. sheesh! *)
 fun mod2(q,p,c) =
 	(q andalso p andalso c) orelse
 	(q andalso (not p) andalso (not c)) orelse
