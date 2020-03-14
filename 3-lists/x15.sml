@@ -29,20 +29,25 @@ fun binToBool nil = nil
 infix xor;
 fun p xor q = (p orelse q) andalso not(p andalso q); 
 
+fun mod2(q,p,c) =
+	(((not q) andalso (not p) andalso (not c)) orelse
+	((not q) andalso p andalso c) orelse
+	(q andalso (not p) andalso c) orelse
+	(q andalso p andalso (not c)));
+
+fun div2(q,p,c) = 
+	(c andalso p) orelse
+	(p andalso q) orelse
+	(c andalso q);
+
 fun boolcarry (false, ps) = ps
 |	boolcarry (true, []) = [true]
 |	boolcarry (true, p::ps) = (not p)::boolcarry(p,ps);
 
 fun boolsum (c, [], qs) = boolcarry (c,qs)
 |	boolsum (c, ps, []) = boolcarry (c,ps)
-|	boolsum (c, p::ps, q::qs) = 
-		(((not q) andalso (not p) andalso (not c)) orelse
-		((not q) andalso p andalso c) orelse
-		(q andalso (not p) andalso c) orelse
-		(q andalso p andalso (not c)))
-		::boolsum((c andalso p)
-			orelse (p andalso (not q))
-			orelse (c andalso (not q)), ps, qs);
+|	boolsum (c, p::ps, q::qs) =
+		mod2(q,p,c)::boolsum(div2(q,p,c), ps, qs);
 
 fun boolpod ([], _) = []
 |	boolpod (false::ps, qs) = false::boolpod(ps,qs)
