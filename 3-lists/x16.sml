@@ -21,10 +21,19 @@ fun binprod ([], _) = []
 (* don't borrow from non-positive *)
 fun borrow (0, bin) = bin
 |   borrow (1, 1::bin) = 0::bin
-|   borrow (1, 0::bin) = 1::borrow(1, bin);
+|   borrow (1, 0::bin) = 1::borrow(1, bin)
+|   borrow (_, []) = [];
 
 (* don't sub greater from lesser *)
-fun binsub (b, l, _) = l
-|   binsub (b, x::xs, y::ys) = binsub
+fun binsub (b, l, []) = borrow(b, l)
+|   binsub (0, 1::xs, y::ys) = (1-y)::binsub(0,xs,ys)
+|   binsub (0, 0::xs, y::ys) = y::binsub(y, xs, ys)
+|   binsub (1, 1::xs, y::ys) = y::binsub(y, xs, ys)  
+|   binsub (1, 0::xs, 0::ys) = 1::binsub(1, xs, ys)
+|   binsub (1, 0::xs, 1::ys) = 1::binsub(1, borrow(1, xs), ys);
+
+fun bindiv ([],_) = []
+|   bindiv (a, b) = 
+	bincarry(1, bindiv(binsub(0,a,b), b));   
 
 
