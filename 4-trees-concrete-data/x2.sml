@@ -1,8 +1,8 @@
 datatype person = King
-				| Peer of string*string*int
-				| Knight of string
-				| Esquire of string*string
-				| Peasant of string;
+|	Peer of string*string*int
+|	Knight of string
+|	Esquire of string*string
+|	Peasant of string;
 
 fun title King = "His Majesty the King"
 |	title (Peer (deg,terr,_)) = "The " ^ deg ^ " of " ^ terr 
