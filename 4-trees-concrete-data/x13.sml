@@ -33,7 +33,8 @@ fun compsame(x, 0) = Lf
 |	shortest (Br(_,l,r) *)
 
 
-
+(* balanced tree is def'd here to mean l,r subtrees have same size
+	this is NOT the same as balanced height trees i dont think *)
 fun bal Lf = SOME 0
 |	bal (Br(_,l,r)) =
 	let
