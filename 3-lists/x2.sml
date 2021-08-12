@@ -8,3 +8,6 @@ fun last(ls) =
 
 fun l [x] = x 
 |	l (x::y) = l y; 
+
+fun j [x] = x
+|	j (_::xs) = j xs;
