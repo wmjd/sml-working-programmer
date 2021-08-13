@@ -12,7 +12,12 @@ fun convert [] = []
 fun converts nil = nil 
 |	converts(l::ls) = implode(convert(l))::converts(ls);
 
-(* get all ways to make change *)
+(* get all ways to make change 
+
+	is all of the ways to make change with the coin and without the coin.
+	there are two base cases that return lists which represent
+	the termination of a coin list
+*)
 fun allChange (cs, cv, 0) = [cs]
 |   allChange (cs, [], amt) = []
 |   allChange (cs, c::cv, amt) =
