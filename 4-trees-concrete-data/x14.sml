@@ -51,9 +51,9 @@ fun bal Lf = SOME 0
 fun isbal tree = if isSome(bal tree) then true else false;
 
 (* using exceptions *)
-exception UnbalancedTree
+exception UnbalancedTree;
 fun isBal Lf = 0
 |	isBal (Br(_,l,r)) = 
-		let left = isBal l and right = isBal r
+		let val left = isBal l and right = isBal r
 		in if abs(left-right) <= 1 then left+1+right
-			else raise UnbalancedTree;
+			else raise UnbalancedTree end;
